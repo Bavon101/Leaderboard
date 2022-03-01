@@ -1,0 +1,93 @@
+body {
+  margin: 0 auto;
+}
+
+.contents {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#recent-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+#add-scores-card {
+  width: 40%;
+  margin-left: 20px;
+}
+
+#history {
+  width: 40%;
+  margin-right: 20px;
+}
+
+#scores-container {
+  border-style: solid;
+}
+
+h1{
+	margin-left: 5%;
+}
+
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  padding: 5px;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  cursor: pointer;
+  height: 30px;
+  width: 100px;
+  background-color: aliceblue;
+}
+
+button:hover {
+  border: none;
+  background-color: black;
+  color: aliceblue;
+}
+
+input {
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 50%;
+}
+
+@media (max-width: 750px) {
+  .contents {
+    flex-direction: column;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  #add-scores-card {
+    margin-top: 20px;
+    width: auto;
+    margin-left: 0;
+  }
+  
+  #history {
+    width: 80%;
+    margin-right: 0;
+  }
+}
