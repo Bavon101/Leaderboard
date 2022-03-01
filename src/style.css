@@ -29,8 +29,8 @@ body {
   border-style: solid;
 }
 
-h1{
-	margin-left: 5%;
+h1 {
+  margin-left: 5%;
 }
 
 h3 {
@@ -85,7 +85,7 @@ input {
     width: auto;
     margin-left: 0;
   }
-  
+
   #history {
     width: 80%;
     margin-right: 0;
