@@ -1,41 +1,39 @@
+import Game from './game.js';
+
+const game = new Game();
 const scoresList = document.getElementById('scores-list');
-const scores = [
-  {
-    name: 'Akumu Bavon',
-    score: 100,
-  },
-  {
-    name: 'Jon Snow',
-    score: 107,
-  },
-];
 const addScoreItem = (s = {}, i) => {
   const scoreItem = document.createElement('li');
-  scoreItem.innerHTML = `${s.name} : ${s.score}`;
+  scoreItem.innerHTML = `${s.user} : ${s.score}`;
   scoreItem.style.backgroundColor = i % 2 ? 'aliceblue' : 'white';
   scoresList.appendChild(scoreItem);
 };
 
-const showScores = (refresh = false) => {
+const showScores = async (refresh = false) => {
   if (refresh) {
+    await game.getScores();
     scoresList.replaceChildren();
   }
-  scores.map((s, i) => {
+  game.gameScores.result.map((s, i) => {
     addScoreItem(s, i);
     return scoresList;
   });
 };
 
-const addScore = () => {
-  const name = document.getElementById('name').value;
+const addScore = async () => {
+  const user = document.getElementById('name').value;
   const score = document.getElementById('score').value;
   document.getElementById('form').reset();
-  const data = { name, score };
-  scores.push(data);
-  addScoreItem(data, (scores.length - 1));
+  const data = { user, score };
+  const addResult = await game.addGame(data);
+  if (addResult.ok) {
+    game.gameScores.result.push(data);
+    addScoreItem(data, (game.gameScores.result.length - 1));
+  }
 };
 
-const init = () => {
+const init = async () => {
+  await game.getScores();
   showScores();
   document.getElementById('refresh-btn').onclick = () => showScores(true);
   document.getElementById('form').addEventListener('submit', addScore);
