@@ -350,7 +350,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n  margin: 0 auto;\r\n}\r\n\r\n.contents {\r\n  display: flex;\r\n  justify-content: center;\r\n  width: 100%;\r\n}\r\n\r\n#recent-card {\r\n  display: flex;\r\n  align-items: center;\r\n  margin-bottom: 10px;\r\n  gap: 10px;\r\n}\r\n\r\n#add-scores-card {\r\n  width: 40%;\r\n  margin-left: 20px;\r\n}\r\n\r\n#history {\r\n  width: 40%;\r\n  margin-right: 20px;\r\n}\r\n\r\n#scores-container {\r\n  border-style: solid;\r\n}\r\n\r\nh1{\r\n\tmargin-left: 5%;\r\n}\r\n\r\nh3 {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\nul {\r\n  list-style-type: none;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\nli {\r\n  padding: 5px;\r\n}\r\n\r\n#form {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\nbutton {\r\n  cursor: pointer;\r\n  height: 30px;\r\n  width: 100px;\r\n  background-color: aliceblue;\r\n}\r\n\r\nbutton:hover {\r\n  border: none;\r\n  background-color: black;\r\n  color: aliceblue;\r\n}\r\n\r\ninput {\r\n  height: 30px;\r\n  margin-top: 10px;\r\n  margin-bottom: 20px;\r\n  width: 50%;\r\n}\r\n\r\n@media (max-width: 750px) {\r\n  .contents {\r\n    flex-direction: column;\r\n    padding-left: 10%;\r\n    padding-right: 10%;\r\n  }\r\n\r\n  #add-scores-card {\r\n    margin-top: 20px;\r\n    width: auto;\r\n    margin-left: 0;\r\n  }\r\n  \r\n  #history {\r\n    width: 80%;\r\n    margin-right: 0;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n  margin: 0 auto;\r\n}\r\n\r\n.contents {\r\n  display: flex;\r\n  justify-content: center;\r\n  width: 100%;\r\n}\r\n\r\n#recent-card {\r\n  display: flex;\r\n  align-items: center;\r\n  margin-bottom: 10px;\r\n  gap: 10px;\r\n}\r\n\r\n#add-scores-card {\r\n  width: 40%;\r\n  margin-left: 20px;\r\n}\r\n\r\n#history {\r\n  width: 40%;\r\n  margin-right: 20px;\r\n}\r\n\r\n#scores-container {\r\n  border-style: solid;\r\n}\r\n\r\nh1 {\r\n  margin-left: 5%;\r\n}\r\n\r\nh3 {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\nul {\r\n  list-style-type: none;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\nli {\r\n  padding: 5px;\r\n}\r\n\r\n#form {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\nbutton {\r\n  cursor: pointer;\r\n  height: 30px;\r\n  width: 100px;\r\n  background-color: aliceblue;\r\n}\r\n\r\nbutton:hover {\r\n  border: none;\r\n  background-color: black;\r\n  color: aliceblue;\r\n}\r\n\r\ninput {\r\n  height: 30px;\r\n  margin-top: 10px;\r\n  margin-bottom: 20px;\r\n  width: 50%;\r\n}\r\n\r\n@media (max-width: 750px) {\r\n  .contents {\r\n    flex-direction: column;\r\n    padding-left: 10%;\r\n    padding-right: 10%;\r\n  }\r\n\r\n  #add-scores-card {\r\n    margin-top: 20px;\r\n    width: auto;\r\n    margin-left: 0;\r\n  }\r\n\r\n  #history {\r\n    width: 80%;\r\n    margin-right: 0;\r\n  }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -480,50 +480,84 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
+
+
+const game = new _game_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
 const scoresList = document.getElementById('scores-list');
-const scores = [
-  {
-    name: 'Akumu Bavon',
-    score: 100,
-  },
-  {
-    name: 'Jon Snow',
-    score: 107,
-  },
-];
 const addScoreItem = (s = {}, i) => {
   const scoreItem = document.createElement('li');
-  scoreItem.innerHTML = `${s.name} : ${s.score}`;
+  scoreItem.innerHTML = `${s.user} : ${s.score}`;
   scoreItem.style.backgroundColor = i % 2 ? 'aliceblue' : 'white';
   scoresList.appendChild(scoreItem);
 };
 
-const showScores = (refresh = false) => {
+const showScores = async (refresh = false) => {
   if (refresh) {
+    await game.getScores();
     scoresList.replaceChildren();
   }
-  scores.map((s, i) => {
+  game.gameScores.result.map((s, i) => {
     addScoreItem(s, i);
     return scoresList;
   });
 };
 
-const addScore = () => {
-  const name = document.getElementById('name').value;
+const addScore = async () => {
+  const user = document.getElementById('name').value;
   const score = document.getElementById('score').value;
   document.getElementById('form').reset();
-  const data = { name, score };
-  scores.push(data);
-  addScoreItem(data, (scores.length - 1));
+  const data = { user, score };
+  const addResult = await game.addGame(data);
+  if (addResult.ok) {
+    game.gameScores.result.push(data);
+    addScoreItem(data, (game.gameScores.result.length - 1));
+  }
 };
 
-const init = () => {
+const init = async () => {
+  await game.getScores();
   showScores();
   document.getElementById('refresh-btn').onclick = () => showScores(true);
   document.getElementById('form').addEventListener('submit', addScore);
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (init);
+
+/***/ }),
+/* 12 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Game)
+/* harmony export */ });
+class Game {
+  gameScores = {};
+
+  gameName = 'The Walking Dead';
+
+  gameId = 'SfnXixPrHikLvDkF1aQm';
+
+  baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
+
+  addGame = async (score) => {
+    const results = await fetch(`${this.baseUrl}games/${this.gameId}/scores/`, {
+      method: 'POST',
+      body: JSON.stringify(score),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    return results;
+  };
+
+  getScores = async () => {
+    const scores = await fetch(`${this.baseUrl}games/${this.gameId}/scores/`, { method: 'GET' });
+    this.gameScores = await scores.json();
+    return scores;
+  }
+}
 
 /***/ })
 /******/ 	]);
