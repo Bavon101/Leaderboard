@@ -1,7 +1,16 @@
 body {
   margin: 0 auto;
 }
-
+.title {
+  font-weight: bolder;
+  background: url("./img/wd.jpg");
+  background-size: contain;
+  font-size: 65px;
+  -webkit-text-fill-color: transparent;
+  background-clip: inherit;
+  -webkit-background-clip: text;
+  font-family: 'Bebas Neue', "cursive";
+}
 .contents {
   display: flex;
   justify-content: center;
@@ -27,15 +36,18 @@ body {
 
 #scores-container {
   border-style: solid;
+  border-radius: 5px;
 }
 
 h1 {
   margin-left: 5%;
+  font-family: 'Bebas Neue', "cursive";
 }
 
 h3 {
   margin: 0;
   padding: 0;
+  font-family: 'Bebas Neue', "cursive";
 }
 
 ul {
@@ -46,6 +58,7 @@ ul {
 
 li {
   padding: 5px;
+  font-family: 'Bebas Neue', "cursive";
 }
 
 #form {
@@ -58,6 +71,8 @@ button {
   height: 30px;
   width: 100px;
   background-color: aliceblue;
+  font-family: 'Bebas Neue', "cursive";
+  border-radius: 5px;
 }
 
 button:hover {
@@ -71,6 +86,7 @@ input {
   margin-top: 10px;
   margin-bottom: 20px;
   width: 50%;
+  border-radius: 5px;
 }
 
 @media (max-width: 750px) {
@@ -90,4 +106,22 @@ input {
     width: 80%;
     margin-right: 0;
   }
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #4f5355;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  justify-self: center;
+  animation: spin 0.5s linear infinite;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
