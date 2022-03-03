@@ -21,6 +21,7 @@ export default class Game {
   getScores = async () => {
     const scores = await fetch(`${this.baseUrl}games/${this.gameId}/scores/`, { method: 'GET' });
     this.gameScores = await scores.json();
-    return scores;
+    this.gameScores.result.sort((a, b) => b.score - a.score);
+    return this.gameScores;
   }
 }
