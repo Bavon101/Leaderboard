@@ -29,7 +29,8 @@ Additional description about the project and its features.
 To get a local copy up and running follow these simple example steps.
 
 ### Setup
-- `git clone .`
+- `git clone https://github.com/Bavon101/Leaderboard.git`
+- `cd Leaderboard`
 - `npm i`
 - `npm run dev`
 <!-- ### Install
