@@ -5,9 +5,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Leaderboard</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
 </head>
 <body>
-	<h1>Leaderboard</h1>
+	<h1 class="title">Leaderboard</h1>
 	<section class="contents">
 		<div id="history">
 			<div id="recent-card">
@@ -16,7 +21,9 @@
 			</div>
 
 			<div id="scores-container">
-				<ul id="scores-list"></ul>
+				<ul id="scores-list">
+					<li class="loader"></li>
+				</ul>
 			</div>
 		</div>
 
@@ -26,7 +33,6 @@
 					Add your score
 				</h3>
 			</div>
-
 			<form action="#" id="form">
 				<label for="name">
 					<input type="text" placeholder="Your name" id="name" required>
@@ -35,7 +41,7 @@
 					<input type="number" placeholder="Your score" id="score" required>
 				</label>
 
-				<button type="submit">
+				<button type="submit" id="add-btn">
 					Submit
 				</button>
 			</form>
