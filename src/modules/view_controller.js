@@ -12,8 +12,8 @@ const addScoreItem = (s = {}, i) => {
 const showScores = async (refresh = false) => {
   if (refresh) {
     await game.getScores();
-    scoresList.replaceChildren();
   }
+  scoresList.replaceChildren();
   game.gameScores.result.map((s, i) => {
     addScoreItem(s, i);
     return scoresList;
